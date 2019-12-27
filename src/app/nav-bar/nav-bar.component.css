@@ -1,0 +1,11 @@
+.navcolour{
+    background-color: lightskyblue;
+}
+
+/* navbar */
+.navbar-default {
+    background-color: lightskyblue !important;
+    border-color: black !important;
+}
+
+li a{color:white} 
