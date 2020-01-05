@@ -7,10 +7,10 @@
       <a routerLink="/" class="navbar-brand">Recipal</a>
     </div>
 
-    <div class="navbar-collapse " [class.collapse]="collapsed" (window:resize)="collapsed = true">
+    <div class="navsbar-collapse " [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
         <li *ngIf="isAuthenticated"><a class="navbar-brand" routerLink="/recipes">MyRecipes</a></li>
-        <li *ngIf="!isAuthenticated"><a class="navbar-brand" routerLink="/auth">Authenticate</a></li>
+        <li *ngIf="!isAuthenticated"><a class="navbar-brand" routerLink="/auth">Log in</a></li>
         <li *ngIf="isAuthenticated"><a class="navbar-brand" routerLink="/shopping-list">Shopping List</a></li>
         <li *ngIf="isAuthenticated"><a class="navbar-brand" routerLink="/newest-recipe">Latest
             Recipes</a></li>
