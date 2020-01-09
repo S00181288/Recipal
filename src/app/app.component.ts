@@ -8,5 +8,6 @@ import { recipe } from './Recipes/Recipe.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'RecipalWebApp';
+  //title = 'RecipalWebApp';
+
 }

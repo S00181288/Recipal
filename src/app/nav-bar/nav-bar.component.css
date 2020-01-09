@@ -9,3 +9,12 @@
 }
 
 li a{color:white} 
+
+.ToolBar{
+    color: black;
+}
+
+.mat-toolbar.mat-primary {
+    background: black;
+    color: #fff;
+  }

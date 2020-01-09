@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Subject } from 'rxjs';
 
 
 import { recipe } from './Recipes/Recipe.model';
@@ -13,6 +14,7 @@ export class RecipeServiceService {
 
   //recipes
   private recipes: recipe[] = [];
+  private recipesUpdated = new Subject<recipe[]>();
 
 
   getrecipes() {
@@ -22,6 +24,16 @@ export class RecipeServiceService {
         this.recipes = recipeData.recipes;
 
       });
+  }
+
+  GetRecipeUpdateLister() {
+    return this.recipesUpdated.asObservable();
+  }
+
+  addRecipe(title: string, content: string) {
+    const recipe: recipe = { title: title, content: content };
+    this.recipes.push(recipe);
+    this.recipesUpdated.next([...this.recipes]);
   }
 
 
