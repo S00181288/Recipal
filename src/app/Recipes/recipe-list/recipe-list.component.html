@@ -1,9 +1,13 @@
-<mat-accordion multi="true" *ngIf="">
-  <mat-expansion-panel *ngFor="let Recipe of Recipes">
+<mat-accordion multi="true" *ngIf="recipes.length > 0">
+  <mat-expansion-panel *ngFor="let recipe of recipes">
   <mat-expansion-panel-header>
-    {{Recipe.title}}
+    {{recipe.title}}
     </mat-expansion-panel-header>
-    <p>{{Recipe.content}}</p>
+    <p>{{recipe.method}}</p>
+    <mat-action-row>
+      <a mat-button class="editbtn" [routerLink]="['/edit', recipe.id]">EDIT</a>
+      <button mat-button class="deletebtn" (click)="onDelete(recipe.id)">DELETE</button>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-<p class="info-text mat-body-3" *ngIf="Recipes.length <= 0" >There are no Recipes to be shown yet. </p>
+<p class="info-text mat-body-3" *ngIf="recipes.length <= 0" >There are no Recipes to be shown yet. </p>

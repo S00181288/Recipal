@@ -5,3 +5,9 @@
 .info-text {
     text-align: center;
 }
+.editbtn{
+color: blue;
+}
+.deletebtn{
+color: red;
+}

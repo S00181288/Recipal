@@ -24,11 +24,18 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   constructor(public recipeservice: RecipeServiceService) { }
 
   ngOnInit() {
-    this.recipes = this.recipeservice.getrecipes();
+    //trigger http request
+    this.recipeservice.getrecipes();
+    //subscribe to the data from the response you can 
+    //use the json to display the data
     this.recipeSub = this.recipeservice.GetRecipeUpdateLister()
-      .subscribe((posts: recipe[]) => {
-        this.recipes = this.recipes;
+      .subscribe((recipes: recipe[]) => {
+        this.recipes = recipes;
       });
+  }
+
+  onDelete(postId: string) {
+    this.recipeservice.deleteRecipe(postId);
   }
 
 

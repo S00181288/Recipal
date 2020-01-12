@@ -1,14 +1,14 @@
 <mat-card>
-  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <form (submit)="onSaveRecipe(postForm)" #postForm="ngForm">
     <mat-form-field>
       <input
         matInput
         type="text"
         name="title"
-        ngModel
+        [ngModel]="recipe?.title"
         required
         minlength="3"
-        placeholder="Recipe Title"
+        placeholder="Recipe title"
         #title="ngModel">
       <mat-error *ngIf="title.invalid">Please enter a Recipe title.</mat-error>
     </mat-form-field>
@@ -16,12 +16,12 @@
       <textarea
         matInput
         rows="4"
-        name="content"
-        ngModel
+        name="method"
+        [ngModel]="recipe?.method"
         required
-        placeholder="Rccipe Content"
-        #content="ngModel"></textarea>
-      <mat-error *ngIf="content.invalid">Please enter Instructions for this Recipe.</mat-error>
+        placeholder="Recipe method"
+        #method="ngModel"></textarea>
+      <mat-error *ngIf="method.invalid">Please enter Instructions for this Recipe.</mat-error>
     </mat-form-field>
     <button
       mat-raised-button
