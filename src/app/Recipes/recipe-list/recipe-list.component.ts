@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { RecipeServiceService } from 'src/app/recipe-service.service';
+import { RecipeServiceService } from 'src/app/Recipes/recipe-service.service';
 import { recipe } from '../Recipe.model';
 import { Subscription } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-recipe-list',
@@ -19,17 +20,20 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 */
 
   recipes: recipe[] = [];
-  private recipeSub: Subscription
+  private recipeSub: Subscription;
+  isLoading = false;
 
   constructor(public recipeservice: RecipeServiceService) { }
 
   ngOnInit() {
+    this.isLoading = true;
     //trigger http request
     this.recipeservice.getrecipes();
     //subscribe to the data from the response you can 
     //use the json to display the data
     this.recipeSub = this.recipeservice.GetRecipeUpdateLister()
       .subscribe((recipes: recipe[]) => {
+        this.isLoading = false;
         this.recipes = recipes;
       });
   }

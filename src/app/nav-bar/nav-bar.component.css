@@ -8,11 +8,9 @@
     border-color: black !important;
 }
 
-
-
-
-
-
+ul{
+    display: flex;
+}
 
   ul{
       list-style: none;

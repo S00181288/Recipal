@@ -11,3 +11,7 @@ color: blue;
 .deletebtn{
 color: red;
 }
+
+mat-spinner{
+margin: auto;
+}

@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
-import { recipe } from './Recipes/Recipe.model';
+import { recipe } from './Recipe.model';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Router } from '@angular/router';
 

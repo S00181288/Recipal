@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const Recipe = require('./models/recipe');
 
+const userRoutes = require('./Routes/user');
 const recipesRoutes = require('./routes/recipes');
 
 const app = express();
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
   //vGuriPKiNgaPWmtd
 
   app.use( "/recipes" ,recipesRoutes);
+  app.use("/user", userRoutes);
 
 module.exports = app;
 

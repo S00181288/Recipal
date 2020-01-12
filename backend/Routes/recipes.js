@@ -1,12 +1,12 @@
 const express = require('express');
 
 const Recipe = require('../models/recipe');
-
+const checkAuth = require('../middleware/check-auth');
 const router = express.Router();
 
 
 //adding recipe via post
-router.post("",( req, res, next) => {
+router.post("", checkAuth,( req, res, next) => {
     const recipe = new Recipe({
         title: req.body.title,
         method: req.body.method
@@ -56,7 +56,7 @@ router.get("", (req, res, next) => {
 });
 
 //send a request to post passing the id of the object you want to delete
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", checkAuth, (req, res, next) => {
     Recipe.deleteOne({_id: req.params.id}).then(result =>{
         console.log(result);
         res.status(200).json({message: 'Recipe Deleted'})
