@@ -33,7 +33,7 @@ export class CreateRecipeComponent implements OnInit {
         //populate recipe with the recipe you choose to edit
         this.recipeService.getRecipe(this.recipeId).subscribe(recipeData => {
           this.isLoading = false;
-          this.recipe = { id: recipeData._id, title: recipeData.title, method: recipeData.method }
+          this.recipe = { id: recipeData._id, title: recipeData.title, method: recipeData.method, creator: recipeData.creator }
         });
       } else {
         this.mode = 'create';

@@ -13,14 +13,15 @@ import {
   MatExpansionModule,
   MatProgressSpinnerModule
 } from '@angular/material';
-// work with forms
+
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateRecipeComponent } from './Recipes/create-recipe/create-recipe.component';
 import { RecipeListComponent } from './Recipes/recipe-list/recipe-list.component';
 import { SignupComponent } from './auth/Sign up/signup/signup.component';
 import { LoginComponent } from './auth/Log in/login/login.component';
+import { AuthInterceptor } from './auth/auth-interceptor'
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { LoginComponent } from './auth/Log in/login/login.component';
 
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

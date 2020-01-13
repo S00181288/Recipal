@@ -31,7 +31,8 @@ export class RecipeServiceService {
           return {
             title: recipe.title,
             method: recipe.method,
-            id: recipe._id
+            id: recipe._id,
+            creator: recipe.creator
           };
         });
       }))
@@ -53,7 +54,7 @@ export class RecipeServiceService {
   //get recipe for editing
   getRecipe(id: string) {
     //return { ...this.recipes.find(p => p.id === id) }
-    return this.http.get<{ _id: string, title: string, method: string }>('http://localhost:3000/recipes/' + id);
+    return this.http.get<{ _id: string, title: string, method: string, creator: string }>('http://localhost:3000/recipes/' + id);
   }
 
   //add a recipe to the list
@@ -74,7 +75,7 @@ export class RecipeServiceService {
 
   //update Recipe
   updateRecipe(id: string, title: string, method: string) {
-    const recipe: recipe = { id: id, title: title, method: method };
+    const recipe: recipe = { id: id, title: title, method: method, creator: null };
     this.http
       .put("http://localhost:3000/recipes/" + id, recipe)
       .subscribe(response => {

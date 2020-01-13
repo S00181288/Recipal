@@ -5,7 +5,7 @@
     {{recipe.title}}
     </mat-expansion-panel-header>
     <p>{{recipe.method}}</p>
-    <mat-action-row>
+    <mat-action-row *ngIf="userIsAuthenticated && userId === recipe.creator">
       <a mat-button class="editbtn" [routerLink]="['/edit', recipe.id]">EDIT</a>
       <button mat-button class="deletebtn" (click)="onDelete(recipe.id)">DELETE</button>
     </mat-action-row>

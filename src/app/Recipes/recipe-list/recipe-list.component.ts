@@ -4,6 +4,8 @@ import { recipe } from '../Recipe.model';
 import { Subscription } from 'rxjs';
 import { ThrowStmt } from '@angular/compiler';
 
+import { AuthService } from '../../auth/auth.service';
+
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -18,23 +20,35 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     { title: "yup3", content: "test3", }
   ];
 */
+  constructor(public recipeservice: RecipeServiceService, private authService: AuthService) { }
 
   recipes: recipe[] = [];
   private recipeSub: Subscription;
+  private authStatusSub: Subscription
   isLoading = false;
+  userIsAuthenticated = false;
+  userId: string;
 
-  constructor(public recipeservice: RecipeServiceService) { }
+
 
   ngOnInit() {
     this.isLoading = true;
     //trigger http request
     this.recipeservice.getrecipes();
+    this.userId = this.authService.getUserId();
     //subscribe to the data from the response you can 
     //use the json to display the data
     this.recipeSub = this.recipeservice.GetRecipeUpdateLister()
       .subscribe((recipes: recipe[]) => {
         this.isLoading = false;
         this.recipes = recipes;
+      });
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+        this.userId = this.authService.getUserId();
       });
   }
 
@@ -45,6 +59,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.recipeSub.unsubscribe();
+    this.authStatusSub.unsubscribe();
   }
 
 }
